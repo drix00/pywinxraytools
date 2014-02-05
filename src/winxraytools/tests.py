@@ -3,7 +3,7 @@
 .. py:currentmodule:: tests
 .. moduleauthor:: Hendrix Demers <hendrix.demers@mail.mcgill.ca>
 
-Regression testing for the pyWinxrayTools.
+Regression testing for the pyWinxrayTools project.
 """
 
 # Script information for the file.
