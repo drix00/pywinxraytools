@@ -15,25 +15,23 @@ __svnId__ = "$Id: test_CharateristicPhirhoz.py 2364 2011-05-30 11:15:15Z hdemers
 
 # Standard library modules.
 import unittest
-import logging
-import os
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import CharateristicPhirhoz
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.CharateristicPhirhoz as CharateristicPhirhoz
 
 # Globals and constants variables.
 
-@ignore()
+@attr('ignore')
 class TestCharateristicPhirhoz(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        filename = Files.getCurrentModulePath(__file__, "../testData/prz Cu 5_001/XCharPRZEm_Reg1.txt")
+        filename = resource_filename(__name__, "../testData/prz Cu 5_001/XCharPRZEm_Reg1.txt")
 
         self.type = "Emitted"
 
@@ -59,7 +57,7 @@ class TestCharateristicPhirhoz(unittest.TestCase):
         self.phirhozFile.extractData(self.lines, self.type)
 
         self.maximumDepthsReference = {}
-        self.maximumDepthsReference[29] = {'La': -92.1666, 'Lb1': -89.2637}
+        self.maximumDepthsReference[29] = {'La':-92.1666, 'Lb1':-89.2637}
 
         self.integralsReference = {}
         self.integralsReference[29] = {'La': 93.2397, 'Lb1': 76.5829}
@@ -132,6 +130,6 @@ class TestCharateristicPhirhoz(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    os.chdir("../")
-    unittest.main()
+    nose.runmodule()

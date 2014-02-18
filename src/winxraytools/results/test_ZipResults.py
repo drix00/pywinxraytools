@@ -15,25 +15,23 @@ __svnId__ = "$Id: test_ZipResults.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
-import logging
-import os
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import ZipResults
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.ZipResults as ZipResults
 
 # Globals and constants variables.
 
-@ignore()
+@attr('ignore')
 class TestZipResults(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        self.zipFilename = Files.getCurrentModulePath(__file__, "../testData/zipFileTest.zip")
+        self.zipFilename = resource_filename(__name__, "../testData/zipFileTest.zip")
 
         self.zipResults = ZipResults.ZipResults(self.zipFilename)
 
@@ -45,7 +43,7 @@ class TestZipResults(unittest.TestCase):
         self.assertTrue(True)
 
     def testConstructor(self):
-        zipFilename = Files.getCurrentModulePath(__file__, "../testData/zipFileTest.zip")
+        zipFilename = resource_filename(__name__, "../testData/zipFileTest.zip")
 
         zipResults = ZipResults.ZipResults(zipFilename)
 
@@ -88,7 +86,7 @@ class TestZipResults(unittest.TestCase):
 
         intensityFilm = results["CharacteristicIntensity"].getData(13, 'Kb1')['film']
 
-        self.assertAlmostEquals(1.69531, intensityFilm*1.0E5, 5)
+        self.assertAlmostEquals(1.69531, intensityFilm * 1.0E5, 5)
 
         absorptionCorrection = results["CorrectionFactor"].getAbsorptionCorrection(13, 'Ka1')
 
@@ -106,6 +104,6 @@ class TestZipResults(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    os.chdir("../")
-    unittest.main()
+    nose.runmodule()

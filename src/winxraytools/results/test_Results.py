@@ -15,25 +15,23 @@ __svnId__ = "$Id: test_Results.py 2706 2012-04-01 15:13:10Z ppinard $"
 
 # Standard library modules.
 import unittest
-import logging
-import os
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import Results
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.Results as Results
 
 # Globals and constants variables.
 
-@ignore()
+@attr('ignore')
 class TestResults(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        self.resultsFolder = Files.getCurrentModulePath(__file__, "../testData/ana 644_001")
+        self.resultsFolder = resource_filename(__name__, "../testData/ana 644_001")
 
         self.results = Results.Results(self.resultsFolder)
 
@@ -96,6 +94,6 @@ class TestResults(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    os.chdir("../")
-    unittest.main()
+    nose.runmodule()

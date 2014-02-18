@@ -18,7 +18,7 @@ __svnId__ = "$Id: WinxrayRegion.py 2364 2011-05-30 11:15:15Z hdemers $"
 # Third party modules.
 
 # Local modules.
-import DatabasesTools.ElementProperties as ElementProperties
+import winxraytools.util.ElementProperties as ElementProperties
 
 # Globals and constants variables.
 

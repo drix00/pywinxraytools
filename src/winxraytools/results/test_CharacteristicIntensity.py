@@ -15,14 +15,13 @@ __svnId__ = "$Id: test_CharacteristicIntensity.py 2364 2011-05-30 11:15:15Z hdem
 
 # Standard library modules.
 import unittest
-import logging
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import CharacteristicIntensity
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.CharacteristicIntensity as CharacteristicIntensity
 
 # Globals and constants variables.
 
@@ -38,9 +37,9 @@ class TestCharacteristicIntensity(unittest.TestCase):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
-    @ignore()
+    @attr('ignore')
     def testReadFile(self):
-        path = Files.getCurrentModulePath(__file__, "../testData/ana 644_001")
+        path = resource_filename(__name__, "../testData/ana 644_001")
 
         ci = CharacteristicIntensity.CharacteristicIntensity(path)
 
@@ -62,5 +61,6 @@ class TestCharacteristicIntensity(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()

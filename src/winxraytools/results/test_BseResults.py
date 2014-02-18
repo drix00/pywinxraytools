@@ -15,15 +15,14 @@ __svnId__ = "$Id: test_BseResults.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
-import logging
 import os.path
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import BseResults
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.BseResults as BseResults
 
 # Globals and constants variables.
 
@@ -32,7 +31,7 @@ class TestBseResults(unittest.TestCase):
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        self.path = Files.getCurrentModulePath(__file__, "../testData/ana 644_001")
+        self.path = resource_filename(__name__, "../testData/ana 644_001")
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)
@@ -41,7 +40,7 @@ class TestBseResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-    @ignore()
+    @attr('ignore')
     def test_ReadFile(self):
         bseResult = BseResults.BseResults(self.path)
 
@@ -51,7 +50,7 @@ class TestBseResults(unittest.TestCase):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
-    @ignore()
+    @attr('ignore')
     def test_extractData(self):
         lines = open(os.path.join(self.path, BseResults.FILENAME)).readlines()
 
@@ -68,5 +67,6 @@ class TestBseResults(unittest.TestCase):
         self.assert_(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()
