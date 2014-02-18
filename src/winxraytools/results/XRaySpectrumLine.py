@@ -56,7 +56,7 @@ class XRaySpectrumLine(object):
 
             try:
                 atomicNumber = int(values[0])
-                symbol = values[1]
+                _symbol = values[1]
                 line = values[2]
                 xrayEnergy = float(values[3])
                 intensityTotal = float(values[4])
@@ -121,7 +121,3 @@ class XRaySpectrumLine(object):
             data['fwhm'] /= numberLine
 
         return data
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

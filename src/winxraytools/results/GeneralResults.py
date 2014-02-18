@@ -35,9 +35,9 @@ def computeEfficiency(value, error, time_s):
     $\sigma_{Q}$ is the statistical uncertainties and $t$ is the computing time.
 
     """
-    ratio = value/error
+    ratio = value / error
 
-    efficiency = ratio*ratio/time_s
+    efficiency = ratio * ratio / time_s
 
     return efficiency
 
@@ -138,7 +138,3 @@ class GeneralResults(object):
 
     def getMeanDensity_g_cm3(self):
         return self.meanDensity_g_cm3
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

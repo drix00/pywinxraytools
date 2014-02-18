@@ -37,7 +37,7 @@ class CharateristicPhirhoz(object):
         """
         self.path = path
         self.filenameList = {"Emitted": "XCharPRZEm_Reg1.txt"
-                                                 ,"Generated": "XCharPRZGen_Reg1.txt"}
+                                                 , "Generated": "XCharPRZGen_Reg1.txt"}
 
         self.data = {}
 
@@ -75,7 +75,7 @@ class CharateristicPhirhoz(object):
             if len(values) > 1:
                 assert len(headers) == len(values)
 
-                for index,key in enumerate(headers):
+                for index, key in enumerate(headers):
                     data[key].append(float(values[index]))
 
         # Change the order of the data.
@@ -181,10 +181,10 @@ class CharateristicPhirhoz(object):
 
                 for value in tmpData:
                     cumulativeValue += value
-                    cumulative.append(cumulativeValue/total)
+                    cumulative.append(cumulativeValue / total)
 
                 cumulative.reverse()
-                for index,value in enumerate(cumulative):
+                for index, value in enumerate(cumulative):
                     if value <= limit:
                         #print index, value, data['Z (nm)'][index]
                         data['maxZ (nm)'][atomicNumber][xrayLine] = data['Z (nm)'][index]
@@ -219,7 +219,7 @@ class CharateristicPhirhoz(object):
 
                     total = sum(data['phirhoz'][atomicNumber][xrayLine])
 
-                    integral = total*step
+                    integral = total * step
 
                     data[key][atomicNumber][xrayLine] = integral
         else:
@@ -325,7 +325,3 @@ class CharateristicPhirhoz(object):
             else:
                 return [], [], []
 
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

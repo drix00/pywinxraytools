@@ -605,7 +605,7 @@ class OptionsFile(object):
         """
         Sets type of crystal.
         Use:
-        
+
             * :const:`CRYSTAL_GE`
             * :const:`CRYSTAL_SI`
         """
@@ -618,7 +618,7 @@ class OptionsFile(object):
         """
         Sets type of eV/channel.
         Use:
-            
+
             * :const:`EV_PER_CHANNEL_5`
             * :const:`EV_PER_CHANNEL_10`
             * :const:`EV_PER_CHANNEL_20`
@@ -633,7 +633,7 @@ class OptionsFile(object):
         """
         Sets type of detector window.
         Use:
-            
+
             * :const:`WINDOW_BE`
             * :const:`WINDOW_NONE`
             * :const:`WINDOW_USER`
@@ -1107,6 +1107,3 @@ class OptionsFile(object):
             energy_keV = experiment[INCIDENTENERGY_KEV]
             self.setIncidentenergy(energy_keV)
 
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

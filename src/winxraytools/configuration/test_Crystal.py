@@ -15,7 +15,7 @@ import logging
 # Third party modules.
 
 # Local modules.
-import winxrayTools.Configuration.Crystal #@UnusedImport
+import winxraytools.configuration.Crystal #@UnusedImport
 
 # Globals and constants variables.
 
