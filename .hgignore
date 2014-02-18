@@ -3,3 +3,6 @@ old/
 .coverage
 *.pyc
 src/winxraytools/testData
+src/*.egg-info
+build
+dist
