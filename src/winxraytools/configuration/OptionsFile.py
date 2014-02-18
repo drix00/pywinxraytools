@@ -22,8 +22,8 @@ import os
 from pkg_resources import resource_stream #@UnresolvedImport
 
 # Local modules.
-import DatabasesTools.ElementProperties as ElementProperties
-import winxrayTools.Configuration.WinxrayRegion as WinxrayRegion
+import winxraytools.util.ElementProperties as ElementProperties
+import winxraytools.configuration.WinxrayRegion as WinxrayRegion
 
 # Globals and constants variables.
 TYPECROSSSECTION = "TypeCrossSection"

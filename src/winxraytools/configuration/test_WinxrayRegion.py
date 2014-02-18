@@ -15,12 +15,11 @@ __svnId__ = "$Id: test_WinxrayRegion.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
-import logging
 
 # Third party modules.
 
 # Local modules.
-import WinxrayRegion
+import winxraytools.configuration.WinxrayRegion as WinxrayRegion
 
 # Globals and constants variables.
 
@@ -161,5 +160,6 @@ class TestWinxrayRegion(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()

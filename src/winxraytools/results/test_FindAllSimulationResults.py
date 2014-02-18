@@ -15,15 +15,14 @@ __svnId__ = "$Id$"
 
 # Standard library modules.
 import unittest
-import logging
 import os.path
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import FindAllSimulationResults
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.FindAllSimulationResults as FindAllSimulationResults
 
 # Globals and constants variables.
 
@@ -32,7 +31,7 @@ class TestFindAllSimulationResults(unittest.TestCase):
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        self.folderPath = Files.getCurrentModulePath(__file__, "../testData/Results/HovingtonMM2009")
+        self.folderPath = resource_filename(__name__, "../testData/Results/HovingtonMM2009")
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)
@@ -41,9 +40,10 @@ class TestFindAllSimulationResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-    @ignore()
+    @attr('ignore')
     def test_getAllPathsFromFolder(self):
         paths = FindAllSimulationResults.getAllPathsFromFolder(self.folderPath)
+        paths = list(map(os.path.normpath, paths))
 
         self.assertEquals(9, len(paths))
 
@@ -58,9 +58,9 @@ class TestFindAllSimulationResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-    @ignore()
+    @attr('ignore')
     def test_getAllPathsFromZip(self):
-        zipPath = Files.getCurrentModulePath(__file__, "../testData/Results/HovingtonMM2009.zip")
+        zipPath = resource_filename(__name__, "../testData/Results/HovingtonMM2009.zip")
         paths = FindAllSimulationResults.getAllPathsFromZip(zipPath)
 
         self.assertEquals(9, len(paths))
@@ -76,6 +76,7 @@ class TestFindAllSimulationResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-if __name__ == '__main__':    #pragma: no cover
+if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()

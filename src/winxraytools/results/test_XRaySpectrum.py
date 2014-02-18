@@ -10,27 +10,25 @@ __license__ = "GPL v3"
 
 # Standard library modules.
 import unittest
-import logging
 import os
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-from winxrayTools.ResultsFile.XRaySpectrum import XRaySpectrum
-
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+from winxraytools.results.XRaySpectrum import XRaySpectrum
 
 # Globals and constants variables.
 
-@ignore()
+@attr('ignore')
 class TestXRaySpectrum(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
         relativePath = os.path.join('..', 'testData', 'prz Cu 5_001')
-        path = Files.getCurrentModulePath(__file__, relativePath)
+        path = resource_filename(__name__, relativePath)
 
         self.r = XRaySpectrum(path)
 
@@ -83,5 +81,6 @@ class TestXRaySpectrum(unittest.TestCase):
         self.assertAlmostEqual(0.0, intensities[-1], 4)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()

@@ -15,12 +15,11 @@ __svnId__ = "$Id: test_ElectronElasticCrossSection.py 2364 2011-05-30 11:15:15Z 
 
 # Standard library modules.
 import unittest
-import logging
 
 # Third party modules.
 
 # Local modules.
-import ElectronElasticCrossSection
+import winxraytools.configuration.ElectronElasticCrossSection #@UnusedImport
 
 # Globals and constants variables.
 
@@ -37,5 +36,6 @@ class TestElectronElasticCrossSection(unittest.TestCase):
         self.assert_(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()

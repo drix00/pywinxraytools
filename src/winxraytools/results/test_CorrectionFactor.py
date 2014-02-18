@@ -15,30 +15,29 @@ __svnId__ = "$Id: test_CorrectionFactor.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
-import logging
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import CorrectionFactor
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.CorrectionFactor as CorrectionFactor
 
 # Globals and constants variables.
 
-@ignore()
+@attr('ignore')
 class TestCorrectionFactor(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        resultsFolder = Files.getCurrentModulePath(__file__, "../testData/Fe75Ni25_TOA40_25keV_001")
+        resultsFolder = resource_filename(__name__, "../testData/Fe75Ni25_TOA40_25keV_001")
         self.correctionFactors = CorrectionFactor.CorrectionFactor(resultsFolder)
 
-        resultsFolder = Files.getCurrentModulePath(__file__, "../testData/Fe_TOA40_25keV_001")
+        resultsFolder = resource_filename(__name__, "../testData/Fe_TOA40_25keV_001")
         self.correctionFactorsFeStd = CorrectionFactor.CorrectionFactor(resultsFolder)
 
-        resultsFolder = Files.getCurrentModulePath(__file__, "../testData/Ni_TOA40_25keV_001")
+        resultsFolder = resource_filename(__name__, "../testData/Ni_TOA40_25keV_001")
         self.correctionFactorsNiStd = CorrectionFactor.CorrectionFactor(resultsFolder)
 
     def tearDown(self):
@@ -49,7 +48,7 @@ class TestCorrectionFactor(unittest.TestCase):
         self.assertTrue(True)
 
     def testConstructor(self):
-        resultsFolder = Files.getCurrentModulePath(__file__, "../testData/prz Cu 5_001")
+        resultsFolder = resource_filename(__name__, "../testData/prz Cu 5_001")
 
         CorrectionFactor.CorrectionFactor(resultsFolder)
 
@@ -62,13 +61,13 @@ class TestCorrectionFactor(unittest.TestCase):
 
         print "A"
         #print 1.0/FaStd, 1.0/Fa, FaStd/Fa
-        print "%s %0.4f" % ("Fe", FaStd/Fa)
+        print "%s %0.4f" % ("Fe", FaStd / Fa)
 
         Fa = self.correctionFactors.getAbsorptionCorrection(28, 'Ka1')
         FaStd = self.correctionFactorsNiStd.getAbsorptionCorrection(28, 'Ka1')
 
         #print 1.0/FaStd, 1.0/Fa, FaStd/Fa
-        print "%s %0.4f" % ("Ni", FaStd/Fa)
+        print "%s %0.4f" % ("Ni", FaStd / Fa)
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
@@ -79,17 +78,18 @@ class TestCorrectionFactor(unittest.TestCase):
 
         print "Z"
         #print FaStd, Fa, FaStd/Fa
-        print "%s %0.4f" % ("Fe", FaStd/Fa)
+        print "%s %0.4f" % ("Fe", FaStd / Fa)
 
         Fa = self.correctionFactors.getAtomicNumberCorrection(28, 'Ka1')
         FaStd = self.correctionFactorsNiStd.getAtomicNumberCorrection(28, 'Ka1')
 
         #print FaStd, Fa, FaStd/Fa
-        print "%s %0.4f" % ("Ni", FaStd/Fa)
+        print "%s %0.4f" % ("Ni", FaStd / Fa)
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    unittest.main()
+    nose.runmodule()

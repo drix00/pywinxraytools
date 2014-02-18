@@ -15,27 +15,24 @@ __svnId__ = "$Id: test_OptionsFile.py 2704 2012-04-01 13:26:17Z ppinard $"
 
 # Standard library modules.
 import unittest
-import logging
 import os
 import tempfile
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
 
 # Local modules.
-import OptionsFile
-import winxrayTools.Configuration.ElectronElasticCrossSection as eecs
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.configuration.OptionsFile as OptionsFile
+import winxraytools.configuration.ElectronElasticCrossSection as eecs
 
 # Globals and constants variables.
 
-@ignore()
 class TestOptionsFile(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        self.pathname = Files.getCurrentModulePath(__file__, "../testData/configurations/default.wxc")
+        self.pathname = resource_filename(__name__, "../testData/configurations/default.wxc")
 
         self.optionsFile = OptionsFile.OptionsFile(self.pathname)
 
@@ -237,6 +234,6 @@ class TestOptionsFile(unittest.TestCase):
         self.assertEqual('/path/to/results', self.optionsFile.getResultsPath())
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    os.chdir("../")
-    unittest.main()
+    nose.runmodule()

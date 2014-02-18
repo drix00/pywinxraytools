@@ -15,15 +15,13 @@ __svnId__ = "$Id: test_GeneralResults.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
-import logging
-import os
 
 # Third party modules.
+from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.attrib import attr
 
 # Local modules.
-import GeneralResults
-import DrixUtilities.Files as Files
-from DrixUtilities.Testings import ignore
+import winxraytools.results.GeneralResults as GeneralResults
 
 # Globals and constants variables.
 
@@ -32,7 +30,7 @@ class TestGeneralResults(unittest.TestCase):
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        path = Files.getCurrentModulePath(__file__, "../testData/ana 644_001")
+        path = resource_filename(__name__, "../testData/ana 644_001")
 
         self.generalResult = GeneralResults.GeneralResults(path)
 
@@ -43,9 +41,9 @@ class TestGeneralResults(unittest.TestCase):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
-    @ignore()
+    @attr('ignore')
     def testReadFile(self):
-        path = Files.getCurrentModulePath(__file__, "../testData/ana 644_001")
+        path = resource_filename(__name__, "../testData/ana 644_001")
 
         generalResult = GeneralResults.GeneralResults(path)
 
@@ -62,7 +60,7 @@ class TestGeneralResults(unittest.TestCase):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
-    @ignore()
+    @attr('ignore')
     def testGetMeanDensity_g_cm3(self):
         meanDensity_g_cm3 = self.generalResult.getMeanDensity_g_cm3()
 
@@ -71,6 +69,6 @@ class TestGeneralResults(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
-    os.chdir("../")
-    unittest.main()
+    nose.runmodule()

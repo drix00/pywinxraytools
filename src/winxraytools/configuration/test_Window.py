@@ -10,16 +10,15 @@ __license__ = "GPL v3"
 
 # Standard library modules.
 import unittest
-import logging
 
 # Third party modules.
 
 # Local modules.
-import winxrayTools.Configuration.Window #@UnusedImport
+import winxraytools.configuration.Window #@UnusedImport
 
 # Globals and constants variables.
 
-class Test(unittest.TestCase):
+class TestWindow(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
@@ -31,5 +30,7 @@ class Test(unittest.TestCase):
         self.assertTrue(True)
 
 if __name__ == '__main__': #pragma: no cover
+    import logging, nose
     logging.getLogger().setLevel(logging.DEBUG)
+    nose.runmodule()
     unittest.main()
