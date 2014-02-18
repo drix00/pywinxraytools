@@ -35,4 +35,4 @@ def getLabel(type):
     elif type == TYPE_SI:
         return 'Si'
     else:
-        raise ValueError, 'Unknown crystal'
+        raise ValueError('Unknown crystal')

@@ -51,5 +51,5 @@ def getLabel(type):
     elif type == TYPE_RUTHERFORDRELATIVISTIC:
         return "RutherfordRelativistic"
     else:
-        raise ValueError, 'Unknown elastic cross section'
+        raise ValueError('Unknown elastic cross section')
 

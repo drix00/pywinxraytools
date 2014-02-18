@@ -19,7 +19,7 @@ import os.path
 # Third party modules.
 
 # Local modules.
-import CharateristicPhirhoz
+import winxraytools.results.CharateristicPhirhoz as CharateristicPhirhoz
 import winxraytools.configuration.OptionsFile as OptionsFile
 
 # Globals and constants variables.

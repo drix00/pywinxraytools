@@ -46,7 +46,7 @@ class CharateristicPhirhoz(object):
                 for xrayType in self.filenameList:
                     self.readFile(os.path.join(self.path, self.filenameList[xrayType]), xrayType)
             else:
-                print "Path does not exists:", path
+                raise ValueError("Path does not exists: " + path)
 
     def readFile(self, filename, xrayType):
         """

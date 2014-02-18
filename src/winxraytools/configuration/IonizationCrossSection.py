@@ -32,4 +32,4 @@ def getLabel(type):
     if type == TYPE_CASNATI:
         return 'Casnati (1982)'
     else:
-        raise ValueError, 'Unknown ionization cross section'
+        raise ValueError('Unknown ionization cross section')

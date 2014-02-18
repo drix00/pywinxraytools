@@ -19,13 +19,13 @@ import os.path
 # Third party modules.
 
 # Local modules.
-import GeneralResults
-import BseResults
-import CharacteristicIntensity
-import CharateristicPhirhoz
-import CorrectionFactor
-import XRaySpectrumLine
-import XRayIntensity
+import winxraytools.results.GeneralResults as GeneralResults
+import winxraytools.results.BseResults as BseResults
+import winxraytools.results.CharacteristicIntensity as CharacteristicIntensity
+import winxraytools.results.CharateristicPhirhoz as CharateristicPhirhoz
+import winxraytools.results.CorrectionFactor as CorrectionFactor
+import winxraytools.results.XRaySpectrumLine as XRaySpectrumLine
+import winxraytools.results.XRayIntensity as XRayIntensity
 import winxraytools.configuration.OptionsFile as OptionsFile
 
 # Globals and constants variables.
@@ -58,7 +58,7 @@ class Results(dict):
         self["CorrectionFactor"] = CorrectionFactor.CorrectionFactor(self.resultsPath)
 
     def getResultsTypeList(self):
-        typeList = self.keys()
+        typeList = list(self.keys())
 
         typeList.sort()
 

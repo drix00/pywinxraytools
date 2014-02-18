@@ -32,4 +32,4 @@ def getLabel(type):
     if type == TYPE_JOY_LUO:
         return 'Joy and Luo (1989)'
     else:
-        raise ValueError, 'Unknown energy loss'
+        raise ValueError('Unknown energy loss')

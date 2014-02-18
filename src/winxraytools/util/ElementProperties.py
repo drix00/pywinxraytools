@@ -366,13 +366,13 @@ def getAtomicNumberBySymbol(symbol):
         try:
             return g_elementSymbol.index(symbol.capitalize()) + 1
         except ValueError:
-            print symbol
+            raise ValueError('Invalid symbol: ' + symbol)
 
 def getAtomicNumberByName(name):
         try:
             return g_elementName.index(name.capitalize()) + 1
         except ValueError:
-            print name
+            raise ValueError('Invalid name: ' + name)
 
 def getAtomicNumber(atomicNumber=None, name=None, symbol=None):
     if atomicNumber != None:
@@ -382,16 +382,12 @@ def getAtomicNumber(atomicNumber=None, name=None, symbol=None):
     elif symbol != None:
         return getAtomicNumberBySymbol(symbol)
 
-def run():
-    print getMassDensity_g_cm3(24)
-    print 7.19 * 0.054
-
 def runAtomicNumberSymbol():
     atomicNumbers = range(1, 92 + 1, 1)
 
     for atomicNumber in atomicNumbers:
         symbol = getSymbol(atomicNumber)
-        print "%s" % (symbol)
+        print("%s" % (symbol))
 
 if __name__ == '__main__': #pragma: no cover
     runAtomicNumberSymbol()

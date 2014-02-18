@@ -44,7 +44,7 @@ class XRaySpectrum(object):
             if os.path.exists(self.path):
                 self.readFile(os.path.join(self.path, self.filename))
             else:
-                raise IOError, "Path does not exists: %s" % path
+                raise ValueError("Path does not exists: " + path)
 
     def readFile(self, filename):
         """
@@ -75,13 +75,13 @@ class XRaySpectrum(object):
     def getTotal(self):
         """
         Returns the energy (in eV) and intensities (in counts) of the total
-        spectrum. 
+        spectrum.
         """
         return self.data[ENERGY], self.data[TOTAL]
 
     def getBackground(self):
         """
-        Returns the energy (in eV) and intensities (in counts) of only 
+        Returns the energy (in eV) and intensities (in counts) of only
         background of the spectrum.
         """
         return self.data[ENERGY], self.data[BACKGROUND]

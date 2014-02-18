@@ -59,15 +59,12 @@ class TestCorrectionFactor(unittest.TestCase):
         Fa = self.correctionFactors.getAbsorptionCorrection(26, 'Ka1')
         FaStd = self.correctionFactorsFeStd.getAbsorptionCorrection(26, 'Ka1')
 
-        print "A"
-        #print 1.0/FaStd, 1.0/Fa, FaStd/Fa
-        print "%s %0.4f" % ("Fe", FaStd / Fa)
+        self.assertAlmostEqual(1.0030, FaStd / Fa, 4)
 
         Fa = self.correctionFactors.getAbsorptionCorrection(28, 'Ka1')
         FaStd = self.correctionFactorsNiStd.getAbsorptionCorrection(28, 'Ka1')
 
-        #print 1.0/FaStd, 1.0/Fa, FaStd/Fa
-        print "%s %0.4f" % ("Ni", FaStd / Fa)
+        self.assertAlmostEqual(1.1314, FaStd / Fa, 4)
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
@@ -76,15 +73,12 @@ class TestCorrectionFactor(unittest.TestCase):
         Fa = self.correctionFactors.getAtomicNumberCorrection(26, 'Ka1')
         FaStd = self.correctionFactorsFeStd.getAtomicNumberCorrection(26, 'Ka1')
 
-        print "Z"
-        #print FaStd, Fa, FaStd/Fa
-        print "%s %0.4f" % ("Fe", FaStd / Fa)
+        self.assertAlmostEqual(1.0084, FaStd / Fa, 4)
 
         Fa = self.correctionFactors.getAtomicNumberCorrection(28, 'Ka1')
         FaStd = self.correctionFactorsNiStd.getAtomicNumberCorrection(28, 'Ka1')
 
-        #print FaStd, Fa, FaStd/Fa
-        print "%s %0.4f" % ("Ni", FaStd / Fa)
+        self.assertAlmostEqual(0.9816, FaStd / Fa, 4)
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
