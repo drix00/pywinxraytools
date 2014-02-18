@@ -47,7 +47,7 @@ class CharacteristicIntensity(object):
             if os.path.exists(self.path):
                 self.readFile(os.path.join(self.path, self.filename))
             else:
-                print "Path does not exists:", path
+                raise ValueError("Path does not exists: " + path)
 
     def extractData(self, lines):
         self.intensities = {}

@@ -38,4 +38,4 @@ def getLabel(type):
     elif type == TYPE_USER:
         return 'User'
     else:
-        raise ValueError, 'Unknown window'
+        raise ValueError('Unknown window')

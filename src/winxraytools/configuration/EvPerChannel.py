@@ -41,4 +41,4 @@ def getLabel(type):
     elif type == TYPE_40:
         return '40 eV/channel'
     else:
-        raise ValueError, 'Unknown eV/channel'
+        raise ValueError('Unknown eV/channel')

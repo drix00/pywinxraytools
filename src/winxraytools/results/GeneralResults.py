@@ -63,7 +63,7 @@ class GeneralResults(object):
             if os.path.exists(self.path):
                 self.readFile(os.path.join(self.path, self.filename))
             else:
-                print "Path does not exists:", path
+                raise ValueError("Path does not exists: " + path)
 
     def readFile(self, filename):
         """

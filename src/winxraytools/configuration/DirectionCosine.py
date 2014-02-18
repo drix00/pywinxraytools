@@ -32,4 +32,4 @@ def getLabel(type):
     if type == TYPE_DEMERS:
         return 'Matrices rotation (Demers, 2000)'
     else:
-        raise ValueError, 'Unknown direction cosines'
+        raise ValueError('Unknown direction cosines')

@@ -14,12 +14,19 @@ __svnDate__ = "$Date: 2013-01-28 09:12:37 -0500 (Mon, 28 Jan 2013) $"
 __svnId__ = "$Id: OptionsFile.py 2892 2013-01-28 14:12:37Z ppinard $"
 
 # Standard library modules.
-import ConfigParser
 import zipfile
 import os
+try:
+    from configparser import ConfigParser
+except ImportError: # Python 2
+    from ConfigParser import SafeConfigParser as ConfigParser
+try:
+    from io import StringIO
+except ImportError: # Python 3
+    from StringIO import StringIO
 
 # Third party modules.
-from pkg_resources import resource_stream #@UnresolvedImport
+from pkg_resources import resource_string #@UnresolvedImport
 
 # Local modules.
 import winxraytools.util.ElementProperties as ElementProperties
@@ -49,7 +56,7 @@ def generateZipFile(configurationPath, zipName):
 
 class OptionsFile(object):
     def __init__(self, filename=None):
-        self.configParser = ConfigParser.SafeConfigParser()
+        self.configParser = ConfigParser()
 
         self.filename = filename
         self.read(self.filename)
@@ -63,7 +70,13 @@ class OptionsFile(object):
         if filename:
             self.configParser.read(filename)
         else: # read default.wxc
-            self.configParser.readfp(resource_stream(__name__, "default.wxc"))
+            data = resource_string(__name__, "default.wxc")
+            data = StringIO(data.decode('ascii')) # Ensure unicode
+
+            try:
+                self.configParser.read_file(data)
+            except:
+                self.configParser.readfp(data)
 
     def write(self, filename=None):
         if not filename:
@@ -90,7 +103,7 @@ class OptionsFile(object):
         root, ext = os.path.splitext(filename)
 
         if ext != ".wxc":
-            raise IOError, 'Invalid extension: %s' % ext
+            raise IOError('Invalid extension: %s' % ext)
 
         return root + ext
 
@@ -100,7 +113,7 @@ class OptionsFile(object):
         sections.sort()
 
         for section in sections:
-            print section
+            print(section)
 
     def printOptions(self, section):
         options = self.configParser.options(section)
@@ -108,7 +121,7 @@ class OptionsFile(object):
         options.sort()
 
         for option in options:
-            print option
+            print(option)
 
     def printElectricField(self):
         self.printOptions('ElectricField')

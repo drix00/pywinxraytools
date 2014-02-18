@@ -36,7 +36,7 @@ class WinxrayRegion(object):
                 self.massDensities.append(ElementProperties.getMassDensity_g_cm3(atomicNumber))
 
         if self.weightFractions == None and self.atomicFractions == None:
-            raise ValueError, "Need to set weight fraction or atomic fraction"
+            raise ValueError("Need to set weight fraction or atomic fraction")
 
         if self.weightFractions == None:
             self.weightFractions = self.computeWeightFractions()
@@ -143,14 +143,14 @@ class WinxrayRegion(object):
         """
         total = 0.0
 
-        for index, atomicNumber in enumerate(self.atomicNumbers):
+        for index, _ in enumerate(self.atomicNumbers):
             if self.massDensities[index] <= 0.0:
-                print atomicNumber
+                raise ValueError('Negative mass density')
 
             total += self.weightFractions[index] / self.massDensities[index]
 
         if total <= 0.0:
-            print self.atomicNumbers
+            raise ValueError('Negative total')
 
         total = 1.0 / total
 

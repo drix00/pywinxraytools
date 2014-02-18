@@ -58,28 +58,19 @@ class ZipResults(object):
             if folderName in folder:
                 resultsPath = tempfile.mkdtemp()
                 try:
-                    zipFile = zipfile.ZipFile(self.zipFilename, 'r')
+                    with zipfile.ZipFile(self.zipFilename, 'r') as zipFile:
+                        for pathname in zipFile.namelist():
+                            if folderName in pathname:
+                                filename = os.path.split(pathname)[1]
 
-                    for pathname in zipFile.namelist():
-                        if folderName in pathname:
-                            filename = os.path.split(pathname)[1]
+                                if filename != '':
+                                    lines = zipFile.read(pathname)
 
-                            if filename != '':
-                                lines = zipFile.read(pathname)
-
-                                #lines = lines.splitlines()
-
-                                filePath = os.path.join(resultsPath, filename)
-
-                                resultsFile = open(filePath, 'w')
-
-                                resultsFile.writelines(lines)
-
-                                resultsFile.close()
-
+                                    filePath = os.path.join(resultsPath, filename)
+                                    with open(filePath, 'wb') as resultsFile:
+                                        resultsFile.write(lines)
 
                     results = Results.Results(resultsPath)
-
                 finally:
                     shutil.rmtree(resultsPath)
 

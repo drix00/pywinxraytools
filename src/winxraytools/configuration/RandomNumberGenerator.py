@@ -41,4 +41,4 @@ def getLabel(type):
     elif type == TYPE_RAN4:
         return 'ran4 (Press et al. 1986)'
     else:
-        raise ValueError, 'Unknown random number generator'
+        raise ValueError('Unknown random number generator')

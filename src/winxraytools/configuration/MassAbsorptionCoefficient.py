@@ -38,4 +38,4 @@ def getLabel(type):
     elif type == TYPE_HENKE:
         return 'Henke (1992)'
     else:
-        raise ValueError, 'Unknown mass absorption coefficient'
+        raise ValueError('Unknown mass absorption coefficient')
