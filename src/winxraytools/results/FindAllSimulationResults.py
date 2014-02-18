@@ -16,7 +16,6 @@ __svnId__ = "$Id$"
 # Standard library modules.
 import os
 import zipfile
-import os.path
 import logging
 
 # Third party modules.
@@ -29,7 +28,7 @@ OPTION_FILENAME = "Option.wxc"
 def getAllPathsFromFolder(basepath):
     paths = []
 
-    for dirpath, dirnames, filenames in os.walk(basepath):
+    for dirpath, _, filenames in os.walk(basepath):
         if OPTION_FILENAME in filenames:
             paths.append(dirpath)
 
@@ -48,7 +47,3 @@ def getAllPathsFromZip(zipPath):
             logging.debug("Added %s from zip.", path)
 
     return paths
-
-if __name__ == '__main__':    #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

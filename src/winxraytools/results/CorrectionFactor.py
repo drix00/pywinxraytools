@@ -20,7 +20,7 @@ import os.path
 
 # Local modules.
 import CharateristicPhirhoz
-import winxrayTools.Configuration.OptionsFile as OptionsFile
+import winxraytools.configuration.OptionsFile as OptionsFile
 
 # Globals and constants variables.
 
@@ -104,7 +104,7 @@ class CorrectionFactor(object):
         FX *= self.meanDensity_g_cm3
 
         if F0 != 0.0:
-            absorptionCorrection = FX/F0
+            absorptionCorrection = FX / F0
 
             return absorptionCorrection
 
@@ -116,10 +116,6 @@ class CorrectionFactor(object):
         #print F0, self.weightFractions
 
         #atomicNumberCorrection = F0/self.weightFractions[atomicNumber]
-        atomicNumberCorrection = F0*self.meanDensity_g_cm3
+        atomicNumberCorrection = F0 * self.meanDensity_g_cm3
 
         return atomicNumberCorrection
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

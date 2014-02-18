@@ -71,13 +71,13 @@ class WinxrayRegion(object):
          * \f]
         """
         total = 0.0
-        for index,atomicNumber in enumerate(self.atomicNumbers):
-            total += self.atomicFractions[index]*ElementProperties.getAtomicMass_g_mol(atomicNumber)
+        for index, atomicNumber in enumerate(self.atomicNumbers):
+            total += self.atomicFractions[index] * ElementProperties.getAtomicMass_g_mol(atomicNumber)
 
         weightFractions = []
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
-            value = self.atomicFractions[index]*ElementProperties.getAtomicMass_g_mol(atomicNumber)
+        for index, atomicNumber in enumerate(self.atomicNumbers):
+            value = self.atomicFractions[index] * ElementProperties.getAtomicMass_g_mol(atomicNumber)
             value /= total
 
             weightFractions.append(value)
@@ -96,13 +96,13 @@ class WinxrayRegion(object):
         """
         total = 0.0
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
-            total += self.weightFractions[index]/ElementProperties.getAtomicMass_g_mol(atomicNumber)
+        for index, atomicNumber in enumerate(self.atomicNumbers):
+            total += self.weightFractions[index] / ElementProperties.getAtomicMass_g_mol(atomicNumber)
 
         atomicFractions = []
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
-            value = self.weightFractions[index]/ElementProperties.getAtomicMass_g_mol(atomicNumber)
+        for index, atomicNumber in enumerate(self.atomicNumbers):
+            value = self.weightFractions[index] / ElementProperties.getAtomicMass_g_mol(atomicNumber)
             value /= total
 
             atomicFractions.append(value)
@@ -143,16 +143,16 @@ class WinxrayRegion(object):
         """
         total = 0.0
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
+        for index, atomicNumber in enumerate(self.atomicNumbers):
             if self.massDensities[index] <= 0.0:
                 print atomicNumber
 
-            total += self.weightFractions[index]/self.massDensities[index]
+            total += self.weightFractions[index] / self.massDensities[index]
 
         if total <= 0.0:
             print self.atomicNumbers
 
-        total = 1.0/total
+        total = 1.0 / total
 
         return total
 
@@ -168,8 +168,8 @@ class WinxrayRegion(object):
         """
         total = 0.0
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
-            total += self.weightFractions[index]*atomicNumber
+        for index, atomicNumber in enumerate(self.atomicNumbers):
+            total += self.weightFractions[index] * atomicNumber
 
         return total
 
@@ -185,8 +185,8 @@ class WinxrayRegion(object):
         """
         total = 0.0
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
-            total += self.weightFractions[index]*ElementProperties.getAtomicMass_g_mol(atomicNumber)
+        for index, atomicNumber in enumerate(self.atomicNumbers):
+            total += self.weightFractions[index] * ElementProperties.getAtomicMass_g_mol(atomicNumber)
 
         return total
 
@@ -204,7 +204,7 @@ class WinxrayRegion(object):
 
         meanDensity_g_cm3 = self.computeMeanDensity()
 
-        for index,atomicNumber in enumerate(self.atomicNumbers):
+        for index, atomicNumber in enumerate(self.atomicNumbers):
             atomicDensity_atom_cm3 = self.weightFractions[index]
             atomicDensity_atom_cm3 *= ElementProperties.g_AvogadroNumber_atom_mol
             atomicDensity_atom_cm3 *= meanDensity_g_cm3
@@ -225,14 +225,10 @@ class WinxrayRegion(object):
         self.atomicFractions = []
         self.massDensities = []
 
-        for index,atomicNumber in enumerate(atomicNumbers):
+        for index, atomicNumber in enumerate(atomicNumbers):
             if weightFractions[index] > 0.0:
                 #print atomicNumber, weightFractions[index]
                 self.atomicNumbers.append(atomicNumber)
                 self.weightFractions.append(weightFractions[index])
                 self.atomicFractions.append(atomicFractions[index])
                 self.massDensities.append(massDensities[index])
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

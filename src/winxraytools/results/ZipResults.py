@@ -23,7 +23,7 @@ import warnings
 # Third party modules.
 
 # Local modules.
-import winxrayTools.ResultsFile.Results as Results
+import winxraytools.results.Results as Results
 
 # Globals and constants variables.
 
@@ -89,7 +89,3 @@ class ZipResults(object):
             warnings.warn(message)
 
         return results
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)

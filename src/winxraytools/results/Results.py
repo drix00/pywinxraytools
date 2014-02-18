@@ -26,7 +26,7 @@ import CharateristicPhirhoz
 import CorrectionFactor
 import XRaySpectrumLine
 import XRayIntensity
-import winxrayTools.Configuration.OptionsFile as OptionsFile
+import winxraytools.configuration.OptionsFile as OptionsFile
 
 # Globals and constants variables.
 
@@ -63,7 +63,3 @@ class Results(dict):
         typeList.sort()
 
         return typeList
-
-if __name__ == '__main__': #pragma: no cover
-    import DrixUtilities.Runner as Runner
-    Runner.Runner().run(runFunction=None)
