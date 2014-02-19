@@ -591,7 +591,7 @@ class OptionsFile(object):
         return int(self.get('XRayDetector', 'nbchannel'))
 
     def setNumberChannel(self, value):
-        self.set('XRayDetector', 'nbchannel', value)
+        self.set('XRayDetector', 'nbchannel', int(value))
 
     def setUserDefineSolidAngle(self, value):
         self.set('XRayDetector', 'userdefinesolidangle', int(value))
