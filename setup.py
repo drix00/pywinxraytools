@@ -70,8 +70,8 @@ setup(name="pyWinxrayTools",
       include_package_data=False, # Do not include test data
 
       install_requires=[],
+      setup_requires=['nose', 'coverage'],
 
-      tests_require=['nose'],
       test_suite='nose.collector',
 
       cmdclass={'zip_testdata': TestDataCommand},
