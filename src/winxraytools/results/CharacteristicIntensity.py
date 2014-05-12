@@ -120,7 +120,8 @@ class CharacteristicIntensity(object):
         Read all lines of the file and extract data.
 
         """
-        lines = open(filename, 'r').readlines()
+        with open(filename, 'r') as fp:
+            lines = fp.readlines()
 
         self.extractData(lines)
 

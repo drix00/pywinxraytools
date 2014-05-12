@@ -94,7 +94,8 @@ class OptionsFile(object):
 
 #        self.setTypeMac(3)
 
-        self.configParser.write(open(filename, 'w'))
+        with open(filename, 'w') as fp:
+            self.configParser.write(fp)
 
         #print len(files)
         #print files
