@@ -49,14 +49,16 @@ class CorrectionFactor(object):
     def readGeneratedData(self, resultsFolder):
         filename = os.path.join(resultsFolder, "XCharPRZGen_Reg1.txt")
 
-        lines = open(filename, 'r').readlines()
+        with open(filename, 'r') as fp:
+            lines = fp.readlines()
 
         self.extractGeneratedData(lines)
 
     def readEmittedData(self, resultsFolder):
         filename = os.path.join(resultsFolder, "XCharPRZEm_Reg1.txt")
 
-        lines = open(filename, 'r').readlines()
+        with open(filename, 'r') as fp:
+            lines = fp.readlines()
 
         self.extractEmittedData(lines)
 
