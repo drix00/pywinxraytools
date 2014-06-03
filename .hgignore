@@ -1,10 +1,10 @@
 syntax: glob
 old/
 .coverage
-*/nosetests.xml
-*/coverage.xml
+nosetests.xml
+coverage.xml
 *.pyc
-src/winxraytools/testData
-src/*.egg-info
+winxraytools/testData
+*.egg-info
 build
 dist
