@@ -35,12 +35,12 @@ class TestDataCommand(Command):
 
     def run(self):
         basepath = os.path.dirname(__file__)
-        testdatapath = os.path.join(basepath, 'src', 'winxraytools', 'testData')
+        testdatapath = os.path.join(basepath, 'winxraytools', 'testData')
 
         zipfilename = self.distribution.get_fullname() + '-testData.zip'
         zipfilepath = os.path.join(self.dist_dir, zipfilename)
         with zipfile.ZipFile(zipfilepath, 'w') as z:
-            for root, dirs, files in os.walk(testdatapath):
+            for root, _dirs, files in os.walk(testdatapath):
                 for file in files:
                     filename = os.path.join(root, file)
                     arcname = os.path.relpath(filename, basepath)
@@ -63,8 +63,7 @@ setup(name="pyWinxrayTools",
                    'Topic :: Scientific/Engineering',
                    'Topic :: Scientific/Engineering :: Physics'],
 
-      packages=find_packages('src'),
-      package_dir={'':'src'},
+      packages=find_packages(),
 
       package_data={'winxraytools.configuration': ['default.wxc']},
       include_package_data=False, # Do not include test data
