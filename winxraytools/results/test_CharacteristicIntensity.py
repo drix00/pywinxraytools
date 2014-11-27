@@ -15,10 +15,11 @@ __svnId__ = "$Id: test_CharacteristicIntensity.py 2364 2011-05-30 11:15:15Z hdem
 
 # Standard library modules.
 import unittest
+import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.CharacteristicIntensity as CharacteristicIntensity
@@ -37,9 +38,10 @@ class TestCharacteristicIntensity(unittest.TestCase):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
-    @attr('ignore')
     def testReadFile(self):
         path = resource_filename(__name__, "../testData/ana 644_001")
+        if not os.path.exists(path):
+            raise SkipTest
 
         ci = CharacteristicIntensity.CharacteristicIntensity(path)
 

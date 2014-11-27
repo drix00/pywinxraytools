@@ -15,23 +15,26 @@ __svnId__ = "$Id: test_CharateristicPhirhoz.py 2364 2011-05-30 11:15:15Z hdemers
 
 # Standard library modules.
 import unittest
+import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.CharateristicPhirhoz as CharateristicPhirhoz
 
 # Globals and constants variables.
 
-@attr('ignore')
 class TestCharateristicPhirhoz(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
         filename = resource_filename(__name__, "../testData/prz Cu 5_001/XCharPRZEm_Reg1.txt")
+        if not os.path.exists(filename):
+            raise SkipTest
+
 
         self.type = "Emitted"
 

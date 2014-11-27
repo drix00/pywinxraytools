@@ -14,14 +14,13 @@ import os
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 from winxraytools.results.XRaySpectrum import XRaySpectrum
 
 # Globals and constants variables.
 
-@attr('ignore')
 class TestXRaySpectrum(unittest.TestCase):
 
     def setUp(self):
@@ -29,6 +28,8 @@ class TestXRaySpectrum(unittest.TestCase):
 
         relativePath = os.path.join('..', 'testData', 'prz Cu 5_001')
         path = resource_filename(__name__, relativePath)
+        if not os.path.exists(path):
+            raise SkipTest
 
         self.r = XRaySpectrum(path)
 

@@ -15,23 +15,25 @@ __svnId__ = "$Id: test_Results.py 2706 2012-04-01 15:13:10Z ppinard $"
 
 # Standard library modules.
 import unittest
+import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.Results as Results
 
 # Globals and constants variables.
 
-@attr('ignore')
 class TestResults(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
         self.resultsFolder = resource_filename(__name__, "../testData/ana 644_001")
+        if not os.path.exists(self.resultsFolder):
+            raise SkipTest
 
         self.results = Results.Results(self.resultsFolder)
 
