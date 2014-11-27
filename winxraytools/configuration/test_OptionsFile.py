@@ -20,6 +20,7 @@ import tempfile
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.configuration.OptionsFile as OptionsFile
@@ -33,6 +34,8 @@ class TestOptionsFile(unittest.TestCase):
         unittest.TestCase.setUp(self)
 
         self.pathname = resource_filename(__name__, "../testData/configurations/default.wxc")
+        if not os.path.exists(self.pathname):
+            raise SkipTest
 
         self.optionsFile = OptionsFile.OptionsFile(self.pathname)
 

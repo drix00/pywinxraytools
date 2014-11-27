@@ -15,23 +15,25 @@ __svnId__ = "$Id: test_ZipResults.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
+import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.ZipResults as ZipResults
 
 # Globals and constants variables.
 
-@attr('ignore')
 class TestZipResults(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
         self.zipFilename = resource_filename(__name__, "../testData/zipFileTest.zip")
+        if not os.path.exists(self.zipFilename):
+            raise SkipTest
 
         self.zipResults = ZipResults.ZipResults(self.zipFilename)
 

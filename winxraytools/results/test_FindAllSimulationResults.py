@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.FindAllSimulationResults as FindAllSimulationResults
@@ -32,6 +32,8 @@ class TestFindAllSimulationResults(unittest.TestCase):
         unittest.TestCase.setUp(self)
 
         self.folderPath = resource_filename(__name__, "../testData/Results/HovingtonMM2009")
+        if not os.path.isdir(self.folderPath):
+            raise SkipTest
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)
@@ -40,7 +42,6 @@ class TestFindAllSimulationResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-    @attr('ignore')
     def test_getAllPathsFromFolder(self):
         paths = FindAllSimulationResults.getAllPathsFromFolder(self.folderPath)
         paths = list(map(os.path.normpath, paths))
@@ -58,7 +59,6 @@ class TestFindAllSimulationResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-    @attr('ignore')
     def test_getAllPathsFromZip(self):
         zipPath = resource_filename(__name__, "../testData/Results/HovingtonMM2009.zip")
         paths = FindAllSimulationResults.getAllPathsFromZip(zipPath)

@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.BseResults as BseResults
@@ -40,8 +40,10 @@ class TestBseResults(unittest.TestCase):
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
 
-    @attr('ignore')
     def test_ReadFile(self):
+        if not os.path.exists(self.path):
+            raise SkipTest
+
         bseResult = BseResults.BseResults(self.path)
 
         self.assertAlmostEquals(0.301, bseResult.getBseYield())
@@ -50,8 +52,10 @@ class TestBseResults(unittest.TestCase):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
 
-    @attr('ignore')
     def test_extractData(self):
+        if not os.path.exists(self.path):
+            raise SkipTest
+
         lines = open(os.path.join(self.path, BseResults.FILENAME)).readlines()
 
         results = BseResults.BseResults()._extractData(lines)

@@ -24,6 +24,8 @@ __license__ = ""
 # Globals and constants variables.
 
 if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.main()
+    import nose
+    import sys
+    argv = sys.argv
+    argv.append("--cover-package=winxraytools")
+    nose.main(argv=argv)

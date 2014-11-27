@@ -15,29 +15,35 @@ __svnId__ = "$Id: test_CorrectionFactor.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
+import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 
 # Local modules.
 import winxraytools.results.CorrectionFactor as CorrectionFactor
 
 # Globals and constants variables.
 
-@attr('ignore')
 class TestCorrectionFactor(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
 
         resultsFolder = resource_filename(__name__, "../testData/Fe75Ni25_TOA40_25keV_001")
+        if not os.path.exists(resultsFolder):
+            raise SkipTest
         self.correctionFactors = CorrectionFactor.CorrectionFactor(resultsFolder)
 
         resultsFolder = resource_filename(__name__, "../testData/Fe_TOA40_25keV_001")
+        if not os.path.exists(resultsFolder):
+            raise SkipTest
         self.correctionFactorsFeStd = CorrectionFactor.CorrectionFactor(resultsFolder)
 
         resultsFolder = resource_filename(__name__, "../testData/Ni_TOA40_25keV_001")
+        if not os.path.exists(resultsFolder):
+            raise SkipTest
         self.correctionFactorsNiStd = CorrectionFactor.CorrectionFactor(resultsFolder)
 
     def tearDown(self):
