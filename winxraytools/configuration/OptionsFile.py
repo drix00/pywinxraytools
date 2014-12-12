@@ -691,7 +691,7 @@ class OptionsFile(object):
     def setTypeDirectionCosines(self, value):
         """
         Sets direction cosines.
-        See :mod:`DirectionCosine <winxrayTools.Configuration.DirectionCosine>`
+        See :mod:`DirectionCosine <winxraytools.configuration.DirectionCosine>`
         """
         self.set('PhysicsModel', 'typedirectioncosines', value)
 
@@ -701,7 +701,7 @@ class OptionsFile(object):
     def setTypeEnergyLoss(self, value):
         """
         Sets energy loss.
-        See :mod:`EnergyLoss <winxrayTools.Configuration.EnergyLoss>`
+        See :mod:`EnergyLoss <winxraytools.configuration.EnergyLoss>`
         """
         self.set('PhysicsModel', 'typeenergyloss', value)
 
@@ -711,7 +711,7 @@ class OptionsFile(object):
     def setTypeIonisationPotential(self, value):
         """
         Sets ionization potential.
-        See :mod:`IonizationPotential <winxrayTools.Configuration.IonizationPotential>`
+        See :mod:`IonizationPotential <winxraytools.configuration.IonizationPotential>`
         """
         self.set('PhysicsModel', 'typeionisationpotential', value)
 
@@ -721,7 +721,7 @@ class OptionsFile(object):
     def setTypeMac(self, value):
         """
         Sets mass absorption coefficients.
-        See :mod:`MassAbsorptionCoefficient <winxrayTools.Configuration.MassAbsorptionCoefficient>`
+        See :mod:`MassAbsorptionCoefficient <winxraytools.configuration.MassAbsorptionCoefficient>`
         """
         self.set('PhysicsModel', 'typemac', value)
 
@@ -731,7 +731,7 @@ class OptionsFile(object):
     def setTypeElectronElasticCrossSection(self, type):
         """
         Sets elastic cross section.
-        See :mod:`ElasticCrossSection <winxrayTools.Configuration.ElasticCrossSection>`
+        See :mod:`ElasticCrossSection <winxraytools.configuration.ElasticCrossSection>`
         """
         self.set('PhysicsModel', 'typepartialcrosssection', type)
         self.set('PhysicsModel', 'typetotalcrosssection', type)
@@ -739,14 +739,14 @@ class OptionsFile(object):
     def setTypePartialCrossSection(self, type):
         """
         Sets partial elastic cross section.
-        See :mod:`ElasticCrossSection <winxrayTools.Configuration.ElasticCrossSection>`
+        See :mod:`ElasticCrossSection <winxraytools.configuration.ElasticCrossSection>`
         """
         self.set('PhysicsModel', 'typepartialcrosssection', type)
 
     def setTypeTotalCrossSection(self, type):
         """
         Sets total cross section.
-        See :mod:`ElasticCrossSection <winxrayTools.Configuration.ElasticCrossSection>`
+        See :mod:`ElasticCrossSection <winxraytools.configuration.ElasticCrossSection>`
         """
         self.set('PhysicsModel', 'typetotalcrosssection', type)
 
@@ -759,7 +759,7 @@ class OptionsFile(object):
     def setTypeRandomGenerator(self, value):
         """
         Sets random number generator.
-        See :mod:`RandomNumberGenerator <winxrayTools.Configuration.RandomNumberGenerator>`
+        See :mod:`RandomNumberGenerator <winxraytools.configuration.RandomNumberGenerator>`
         """
         self.set('PhysicsModel', 'typerandomgenerator', value)
 
@@ -769,7 +769,7 @@ class OptionsFile(object):
     def setTypeIonizationCrossSection(self, value):
         """
         Sets ionization cross section.
-        See :mod:`IonizationCrossSection <winxrayTools.Configuration.IonizationCrossSection>`
+        See :mod:`IonizationCrossSection <winxraytools.configuration.IonizationCrossSection>`
         """
         self.set('PhysicsModel', 'typexraycrosssectionbremsstrahlung', value)
         self.set('PhysicsModel', 'typexraycrosssectioncharacteristic', value)
@@ -777,7 +777,7 @@ class OptionsFile(object):
     def setTypeXrayCrossSectionBremsstrahlung(self, value):
         """
         Sets ionization cross section.
-        See :mod:`IonizationCrossSection <winxrayTools.Configuration.IonizationCrossSection>`
+        See :mod:`IonizationCrossSection <winxraytools.configuration.IonizationCrossSection>`
         """
         self.set('PhysicsModel', 'typexraycrosssectionbremsstrahlung', value)
 
@@ -787,7 +787,7 @@ class OptionsFile(object):
     def setTypeXrayCrossSectionCharacteristic(self, value):
         """
         Sets ionization cross section.
-        See :mod:`IonizationCrossSection <winxrayTools.Configuration.IonizationCrossSection>`
+        See :mod:`IonizationCrossSection <winxraytools.configuration.IonizationCrossSection>`
         """
         self.set('PhysicsModel', 'typexraycrosssectioncharacteristic', value)
 

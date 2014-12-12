@@ -7,7 +7,7 @@
 .. module:: EvPerChannel
    :synopsis: Type of eV per channel
 
-.. inheritance-diagram:: winxrayTools.Configuration.EvPerChannel
+.. inheritance-diagram:: winxraytools.configuration.EvPerChannel
 
 """
 

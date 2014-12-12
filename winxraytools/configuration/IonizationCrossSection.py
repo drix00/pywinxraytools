@@ -7,7 +7,7 @@
 .. module:: IonizationCrossSection
    :synopsis: Type of ionization cross section
 
-.. inheritance-diagram:: winxrayTools.Configuration.IonizationCrossSection
+.. inheritance-diagram:: winxraytools.configuration.IonizationCrossSection
 
 """
 
