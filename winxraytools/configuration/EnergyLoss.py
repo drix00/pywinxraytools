@@ -7,7 +7,7 @@
 .. module:: EnergyLoss
    :synopsis: Type of energy loss
 
-.. inheritance-diagram:: winxrayTools.Configuration.EnergyLoss
+.. inheritance-diagram:: winxraytools.configuration.EnergyLoss
 
 """
 

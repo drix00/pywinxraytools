@@ -7,7 +7,7 @@
 .. module:: Window
    :synopsis: Type of detector window
 
-.. inheritance-diagram:: winxrayTools.Configuration.Window
+.. inheritance-diagram:: winxraytools.configuration.Window
 
 """
 

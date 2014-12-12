@@ -7,7 +7,7 @@
 .. module:: RandomNumberGenerator
    :synopsis: Type of random number generator
 
-.. inheritance-diagram:: winxrayTools.Configuration.RandomNumberGenerator
+.. inheritance-diagram:: winxraytools.configuration.RandomNumberGenerator
 
 """
 

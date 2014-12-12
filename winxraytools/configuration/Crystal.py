@@ -7,7 +7,7 @@
 .. module:: Crystal
    :synopsis: Type of detector crystal
 
-.. inheritance-diagram:: winxrayTools.Configuration.Crystal
+.. inheritance-diagram:: winxraytools.configuration.Crystal
 
 """
 
