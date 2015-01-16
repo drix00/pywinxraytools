@@ -8,3 +8,4 @@ winxraytools/testData
 *.egg-info
 build
 dist
+winxraytoolsOld
