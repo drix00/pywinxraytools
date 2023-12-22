@@ -1,77 +1,113 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-# Script information for the file.
-__author__ = "Philippe T. Pinard"
-__email__ = "philippe.pinard@gmail.com"
-__version__ = "0.1"
-__copyright__ = "Copyright (c) 2013 Philippe T. Pinard"
-__license__ = "GPL v3"
+"""
+.. py:currentmodule:: setup
+.. moduleauthor:: Hendrix Demers <hendrix.demers@mail.mcgill.ca>
+
+Setup script for the project.
+"""
+
+###############################################################################
+# Copyright 2023 Hendrix Demers
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###############################################################################
 
 # Standard library modules.
-import os
-import zipfile
-from distutils.cmd import Command
+import os.path
+import io
+import sys
 
 # Third party modules.
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
+# noinspection PyPep8Naming
+from setuptools.command.test import test as TestCommand
 
 # Local modules.
 
+# Project modules.
+from winxraytools import __author__, __email__, __version__, __project_name__
+
 # Globals and constants variables.
+here = os.path.abspath(os.path.dirname(__file__))
 
-class TestDataCommand(Command):
 
-    description = "create a zip of all files in the testData folder"
-    user_options = [('dist-dir=', 'd',
-                     "directory to put final built distributions in "
-                     "[default: dist]"), ]
+def read(*filenames, **kwargs):
+    encoding = kwargs.get('encoding', 'utf-8')
+    sep = kwargs.get('sep', '\n')
+    buf = []
+    for filename in filenames:
+        with io.open(filename, encoding=encoding) as f:
+            buf.append(f.read())
+    return sep.join(buf)
 
-    def initialize_options(self):
-        self.dist_dir = None
 
+long_description = read('README.rst')
+
+
+class PyTest(TestCommand):
     def finalize_options(self):
-        if self.dist_dir is None:
-            self.dist_dir = "dist"
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
 
-    def run(self):
-        basepath = os.path.dirname(__file__)
-        testdatapath = os.path.join(basepath, 'winxraytools', 'testData')
+    def run_tests(self):
+        import pytest
+        errcode = pytest.main(self.test_args)
+        sys.exit(errcode)
 
-        zipfilename = self.distribution.get_fullname() + '-testData.zip'
-        zipfilepath = os.path.join(self.dist_dir, zipfilename)
-        with zipfile.ZipFile(zipfilepath, 'w') as z:
-            for root, _dirs, files in os.walk(testdatapath):
-                for file in files:
-                    filename = os.path.join(root, file)
-                    arcname = os.path.relpath(filename, basepath)
-                    z.write(filename, arcname)
 
-setup(name="pyWinxrayTools",
-      version='0.1',
-      url='http://montecarlomodeling.mcgill.ca/software/winxray/winxray.html',
-      description="Python interface to read and write WinX-Ray files",
-      author="Hendrix Demers",
-      author_email="hendrix.demers@mail.mcgill.ca",
-      license="LGPL v3",
-      classifiers=['Development Status :: 4 - Beta',
-                   'Intended Audience :: Developers',
-                   'Intended Audience :: Science/Research',
-                   'License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)',
-                   'Natural Language :: English',
-                   'Programming Language :: Python',
-                   'Operating System :: OS Independent',
-                   'Topic :: Scientific/Engineering',
-                   'Topic :: Scientific/Engineering :: Physics'],
+setup(
+    name=__project_name__,
+    version=__version__,
+    author=__author__,
+    author_email=__email__,
+    maintainer=__author__,
+    maintainer_email=__email__,
+    description="Python interface to read and write WinX-Ray files",
+    long_description=long_description,
+    keywords="pythonscience physics",
+    url='http://montecarlomodeling.mcgill.ca/software/winxray/winxray.html',
+    project_urls={
+        "Bug Tracker": "https://github.com/drix00/synthetic-micrograph/issues",
+        "Documentation": "https://synthetic-micrograph.readthedocs.io/",
+        "Source Code": "https://github.com/drix00/synthetic-micrograph",
+    },
 
-      packages=find_packages(),
+    packages=find_namespace_packages(),
+    platforms='any',
+    zip_safe=False,
+    cmdclass={'test': PyTest},
 
-      package_data={'winxraytools.configuration': ['default.wxc']},
-      include_package_data=False, # Do not include test data
+    install_requires=[],
+    tests_require=['pytest', 'coverage', 'pytest-cov'],
+    extras_require={
+        'testing': ['pytest', 'coverage', 'pytest-cov'],
+        'develop': ['setuptools', 'Sphinx', 'sphinx-rtd-theme', 'coverage', 'pytest', 'pytest-cov']
+    },
 
-      install_requires=[],
-      setup_requires=['nose', 'coverage'],
-
-      test_suite='nose.collector',
-
-      cmdclass={'zip_testdata': TestDataCommand},
+    license="Apache Software License 2.0",
+    license_file="LICENSE",
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: Apache Software License',
+        'Natural Language :: English',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3 :: Only',
+        'Topic :: Scientific/Engineering',
+        'Topic :: Scientific/Engineering :: Physics'
+    ],
 )
