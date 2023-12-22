@@ -20,7 +20,7 @@ import tempfile
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 import winxraytools.configuration.OptionsFile as OptionsFile
@@ -35,7 +35,7 @@ class TestOptionsFile(unittest.TestCase):
 
         self.pathname = resource_filename(__name__, "../testData/configurations/default.wxc")
         if not os.path.exists(self.pathname):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
         self.optionsFile = OptionsFile.OptionsFile(self.pathname)
 
@@ -235,8 +235,3 @@ class TestOptionsFile(unittest.TestCase):
     def testPath(self):
         self.optionsFile.setResultsPath("/path/to/results")
         self.assertEqual('/path/to/results', self.optionsFile.getResultsPath())
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

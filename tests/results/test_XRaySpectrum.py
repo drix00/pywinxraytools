@@ -14,7 +14,7 @@ import os
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 from winxraytools.results.XRaySpectrum import XRaySpectrum
@@ -26,10 +26,10 @@ class TestXRaySpectrum(unittest.TestCase):
     def setUp(self):
         unittest.TestCase.setUp(self)
 
-        relativePath = os.path.join('..', 'testData', 'prz Cu 5_001')
+        relativePath = os.path.join('../../winxraytools', 'testData', 'prz Cu 5_001')
         path = resource_filename(__name__, relativePath)
         if not os.path.exists(path):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
         self.r = XRaySpectrum(path)
 
@@ -80,8 +80,3 @@ class TestXRaySpectrum(unittest.TestCase):
 
         self.assertAlmostEqual(4995, energies[-1], 4)
         self.assertAlmostEqual(0.0, intensities[-1], 4)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

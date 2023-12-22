@@ -14,11 +14,11 @@ import unittest
 # Third party modules.
 
 # Local modules.
-import winxraytools.configuration.Window #@UnusedImport
+import winxraytools.configuration.EnergyLoss #@UnusedImport
 
 # Globals and constants variables.
 
-class TestWindow(unittest.TestCase):
+class TestEnergyLoss(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
@@ -28,9 +28,3 @@ class TestWindow(unittest.TestCase):
 
     def testskeleton(self):
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()
-    unittest.main()

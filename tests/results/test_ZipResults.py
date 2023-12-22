@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 import winxraytools.results.ZipResults as ZipResults
@@ -33,7 +33,7 @@ class TestZipResults(unittest.TestCase):
 
         self.zipFilename = resource_filename(__name__, "../testData/zipFileTest.zip")
         if not os.path.exists(self.zipFilename):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
         self.zipResults = ZipResults.ZipResults(self.zipFilename)
 
@@ -104,8 +104,3 @@ class TestZipResults(unittest.TestCase):
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 import winxraytools.results.BseResults as BseResults
@@ -38,11 +38,11 @@ class TestBseResults(unittest.TestCase):
 
     def testSkeleton(self):
         #self.fail("Test if the testcase is working.")
-        self.assert_(True)
+        assert True
 
     def test_ReadFile(self):
         if not os.path.exists(self.path):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
         bseResult = BseResults.BseResults(self.path)
 
@@ -54,7 +54,7 @@ class TestBseResults(unittest.TestCase):
 
     def test_extractData(self):
         if not os.path.exists(self.path):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
         lines = open(os.path.join(self.path, BseResults.FILENAME)).readlines()
 
@@ -69,8 +69,3 @@ class TestBseResults(unittest.TestCase):
 
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

@@ -11,7 +11,7 @@ __license__ = ""
 # Subversion informations for the file.
 __svnRevision__ = "$Revision: 2364 $"
 __svnDate__ = "$Date: 2011-05-30 07:15:15 -0400 (Mon, 30 May 2011) $"
-__svnId__ = "$Id: test_XRayIntensity.py 2364 2011-05-30 11:15:15Z hdemers $"
+__svnId__ = "$Id: test_XRaySpectrumLine.py 2364 2011-05-30 11:15:15Z hdemers $"
 
 # Standard library modules.
 import unittest
@@ -19,11 +19,11 @@ import unittest
 # Third party modules.
 
 # Local modules.
-import winxraytools.results.XRayIntensity #@UnusedImport
+import winxraytools.results.XRaySpectrumLine #@UnusedImport
 
 # Globals and constants variables.
 
-class TestXRayIntensity(unittest.TestCase):
+class TestXRaySpectrumLine(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
@@ -34,8 +34,3 @@ class TestXRayIntensity(unittest.TestCase):
     def testSkeleton(self):
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

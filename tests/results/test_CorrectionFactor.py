@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 import winxraytools.results.CorrectionFactor as CorrectionFactor
@@ -33,17 +33,17 @@ class TestCorrectionFactor(unittest.TestCase):
 
         resultsFolder = resource_filename(__name__, "../testData/Fe75Ni25_TOA40_25keV_001")
         if not os.path.exists(resultsFolder):
-            raise SkipTest
+            pytest.skip("Test data file not found")
         self.correctionFactors = CorrectionFactor.CorrectionFactor(resultsFolder)
 
         resultsFolder = resource_filename(__name__, "../testData/Fe_TOA40_25keV_001")
         if not os.path.exists(resultsFolder):
-            raise SkipTest
+            pytest.skip("Test data file not found")
         self.correctionFactorsFeStd = CorrectionFactor.CorrectionFactor(resultsFolder)
 
         resultsFolder = resource_filename(__name__, "../testData/Ni_TOA40_25keV_001")
         if not os.path.exists(resultsFolder):
-            raise SkipTest
+            pytest.skip("Test data file not found")
         self.correctionFactorsNiStd = CorrectionFactor.CorrectionFactor(resultsFolder)
 
     def tearDown(self):
@@ -88,8 +88,3 @@ class TestCorrectionFactor(unittest.TestCase):
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

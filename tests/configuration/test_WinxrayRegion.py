@@ -95,30 +95,30 @@ class TestWinxrayRegion(unittest.TestCase):
 
         atomicFractions = regionAlTiV.computeAtomicFractions()
 
-        self.assertEquals(len(atomicFractionsRef), len(atomicFractions))
+        self.assertEqual(len(atomicFractionsRef), len(atomicFractions))
 
         for afRef, af in zip(atomicFractionsRef, atomicFractions):
-            self.assertAlmostEquals(afRef, af, 5)
+            self.assertAlmostEqual(afRef, af, 5)
 
         # Test with Al
         atomicFractionsRef = [1.0]
 
         atomicFractions = self.regionAl.computeAtomicFractions()
 
-        self.assertEquals(len(atomicFractionsRef), len(atomicFractions))
+        self.assertEqual(len(atomicFractionsRef), len(atomicFractions))
 
         for afRef, af in zip(atomicFractionsRef, atomicFractions):
-            self.assertAlmostEquals(afRef, af)
+            self.assertAlmostEqual(afRef, af)
 
         # Test with MgAl
         atomicFractionsRef = [0.27011, 0.72996]
 
         atomicFractions = self.regionMgAl.computeAtomicFractions()
 
-        self.assertEquals(len(atomicFractionsRef), len(atomicFractions))
+        self.assertEqual(len(atomicFractionsRef), len(atomicFractions))
 
         for afRef, af in zip(atomicFractionsRef, atomicFractions):
-            self.assertAlmostEquals(afRef, af, 3)
+            self.assertAlmostEqual(afRef, af, 3)
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
@@ -131,35 +131,30 @@ class TestWinxrayRegion(unittest.TestCase):
 
         weightFractions = regionAlTiV.computeWeightFractions()
 
-        self.assertEquals(len(weightFractionsRef), len(weightFractions))
+        self.assertEqual(len(weightFractionsRef), len(weightFractions))
 
         for wfRef, wf in zip(weightFractionsRef, weightFractions):
-            self.assertAlmostEquals(wfRef, wf, 5)
+            self.assertAlmostEqual(wfRef, wf, 5)
 
         # Test with Al
         weightFractionsRef = [1.0]
 
         weightFractions = self.regionAl.computeWeightFractions()
 
-        self.assertEquals(len(weightFractionsRef), len(weightFractions))
+        self.assertEqual(len(weightFractionsRef), len(weightFractions))
 
         for wfRef, wf in zip(weightFractionsRef, weightFractions):
-            self.assertAlmostEquals(wfRef, wf)
+            self.assertAlmostEqual(wfRef, wf)
 
         # Test with MgAl
         weightFractionsRef = [0.25, 0.75]
 
         weightFractions = self.regionMgAl.computeWeightFractions()
 
-        self.assertEquals(len(weightFractionsRef), len(weightFractions))
+        self.assertEqual(len(weightFractionsRef), len(weightFractions))
 
         for wfRef, wf in zip(weightFractionsRef, weightFractions):
-            self.assertAlmostEquals(wfRef, wf)
+            self.assertAlmostEqual(wfRef, wf)
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

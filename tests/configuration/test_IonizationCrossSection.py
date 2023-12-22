@@ -14,11 +14,11 @@ import unittest
 # Third party modules.
 
 # Local modules.
-import winxraytools.configuration.MassAbsorptionCoefficient #@UnusedImport
+import winxraytools.configuration.IonizationCrossSection #@UnusedImport
 
 # Globals and constants variables.
 
-class TestMassAbsorptionCoefficient(unittest.TestCase):
+class TestIonizationCrossSection(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
@@ -28,8 +28,3 @@ class TestMassAbsorptionCoefficient(unittest.TestCase):
 
     def testskeleton(self):
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

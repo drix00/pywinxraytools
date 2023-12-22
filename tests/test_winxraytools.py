@@ -43,7 +43,6 @@ def test_is_discovered():
     Test used to validate the file is included in the tests
     by the test framework.
     """
-    assert False
     assert True
 
 
@@ -123,7 +122,7 @@ def test_required_tests_files():
 
 
 def test_required_docs_files():
-    project_doc_path = get_current_module_path(__file__, "../") / "docs"
+    project_doc_path = get_current_module_path(__file__, "../") / "docs/source"
     assert project_doc_path.is_dir()
 
     required_files = ["readme.rst", "conf.py"]

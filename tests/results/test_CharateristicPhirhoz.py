@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 import winxraytools.results.CharateristicPhirhoz as CharateristicPhirhoz
@@ -33,7 +33,7 @@ class TestCharateristicPhirhoz(unittest.TestCase):
 
         filename = resource_filename(__name__, "../testData/prz Cu 5_001/XCharPRZEm_Reg1.txt")
         if not os.path.exists(filename):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
 
         self.type = "Emitted"
@@ -131,8 +131,3 @@ class TestCharateristicPhirhoz(unittest.TestCase):
 
         #self.fail("Test if the TestCase is working.")
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

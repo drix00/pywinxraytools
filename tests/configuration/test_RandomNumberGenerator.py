@@ -14,11 +14,11 @@ import unittest
 # Third party modules.
 
 # Local modules.
-import winxraytools.configuration.DirectionCosine #@UnusedImport
+import winxraytools.configuration.RandomNumberGenerator #@UnusedImport
 
 # Globals and constants variables.
 
-class TestDirectionCosine(unittest.TestCase):
+class TestRandomNumberGenerator(unittest.TestCase):
 
     def setUp(self):
         unittest.TestCase.setUp(self)
@@ -28,8 +28,3 @@ class TestDirectionCosine(unittest.TestCase):
 
     def testskeleton(self):
         self.assertTrue(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()

@@ -19,7 +19,7 @@ import os.path
 
 # Third party modules.
 from pkg_resources import resource_filename #@UnresolvedImport
-from nose.plugins.skip import SkipTest
+import pytest
 
 # Local modules.
 import winxraytools.results.FindAllSimulationResults as FindAllSimulationResults
@@ -33,7 +33,7 @@ class TestFindAllSimulationResults(unittest.TestCase):
 
         self.folderPath = resource_filename(__name__, "../testData/Results/HovingtonMM2009")
         if not os.path.isdir(self.folderPath):
-            raise SkipTest
+            pytest.skip("Test data file not found")
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)
@@ -75,8 +75,3 @@ class TestFindAllSimulationResults(unittest.TestCase):
 
         #self.fail("Test if the testcase is working.")
         self.assert_(True)
-
-if __name__ == '__main__': #pragma: no cover
-    import logging, nose
-    logging.getLogger().setLevel(logging.DEBUG)
-    nose.runmodule()
